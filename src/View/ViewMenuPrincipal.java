@@ -66,6 +66,7 @@ public class ViewMenuPrincipal {
         imgbonhomme.setFitWidth(250);
         imgbonhomme.setFitHeight(250);
         VBox.setMargin(imgbonhomme, new Insets(350,0,0,100));
+        imgbonhomme.getStyleClass().add("fillette");
 
 
         vBoxButton.getChildren().addAll(btnPlay,btnQuit);
@@ -84,7 +85,7 @@ public class ViewMenuPrincipal {
     private Button initButton(String texteButton) {
         Button b = new Button();
         b.setText(texteButton);
-        b.getStyleClass().add("btnStyle");
+        b.getStyleClass().add("btnMenu");
         b.setFont (Font.font ("Aclonica", 20));
         return b;
     }
