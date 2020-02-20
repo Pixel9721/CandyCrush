@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -15,10 +16,10 @@ public class ViewMenuPrincipal {
 
     private ViewHandler vMenu;
     private Group root;
-    private VBox vBoxButton, vBoxBackground;
+    private VBox vBoxButton, vBoxBackground, vBoxLogo;
     private Button btnPlay, btnQuit;
     private ImageView imgbonhomme, imgTitre;
-
+    final GaussianBlur gaussianBlur = new GaussianBlur(20);
 
 
 
@@ -42,7 +43,14 @@ public class ViewMenuPrincipal {
         vBoxBackground.setBackground(new Background( new BackgroundImage(new
                 Image("assets/images/chamallowKawai.jpg"), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        vBoxBackground.setEffect(gaussianBlur);
 
+        vBoxLogo = new VBox();
+        vBoxLogo.setLayoutX(0);
+        vBoxLogo.setLayoutY(0);
+        vBoxLogo.setMinWidth(Screen.getPrimary().getBounds().getWidth());
+        vBoxLogo.setMinHeight(Screen.getPrimary().getBounds().getHeight());
+        vBoxLogo.setAlignment(Pos.TOP_CENTER);
 
         btnPlay = initButton("PLAY");
         VBox.setMargin(btnPlay, new Insets(0,0,10,0));
@@ -50,21 +58,26 @@ public class ViewMenuPrincipal {
         VBox.setMargin(btnQuit, new Insets(30,0,0,0));
 
         imgTitre = new ImageView("Assets/images/CandyCrush1.png");
+        VBox.setMargin(imgTitre, new Insets(50,0,0,0));
         imgTitre.getStyleClass().add("banniere");
 
 
-        imgbonhomme = new ImageView("Assets/images/CandyVache.png");
-        VBox.setMargin(imgbonhomme, new Insets(450,0,0,1000));
+        imgbonhomme = new ImageView("Assets/images/fillette.gif");
+        imgbonhomme.setFitWidth(250);
+        imgbonhomme.setFitHeight(250);
+        VBox.setMargin(imgbonhomme, new Insets(350,0,0,100));
 
 
         vBoxButton.getChildren().addAll(btnPlay,btnQuit);
-        vBoxBackground.getChildren().addAll(imgTitre, imgbonhomme);
+        vBoxBackground.getChildren().addAll();
+        vBoxLogo.getChildren().addAll(imgTitre, imgbonhomme);
         initView();
     }
 
     public void initView(){
         root.getChildren().clear();
         root.getChildren().add(vBoxBackground);
+        root.getChildren().add(vBoxLogo);
         root.getChildren().add(vBoxButton);
     }
 
