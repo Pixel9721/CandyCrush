@@ -10,14 +10,17 @@ public class ControllerMenu implements EventHandler<MouseEvent> {
     private ModelMenu model;
 
 
-    public ControllerMenu(ViewHandler launcher, ModelMenu model) {
-        this.launcher = launcher;
-        this.launcher.setEventrMenu(this);
+    public ControllerMenu(ViewHandler viewHandler, ModelMenu model) {
         this.model = model;
+        this.launcher = viewHandler;
+        this.launcher.setEventHandlerMenu(this);
     }
 
     @Override
     public void handle(MouseEvent event) {
+        if (event.getSource().equals(launcher.getvMenu().getBtnPlay())){
+            launcher.setJeuView();
+        }
         if (event.getSource().equals(launcher.getvMenu().getBtnQuit())){
             System.exit(0);
         }
