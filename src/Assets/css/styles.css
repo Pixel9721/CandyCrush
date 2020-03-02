@@ -6,6 +6,9 @@
 .fillette {
     -fx-effect: dropshadow( gaussian , #000000 , 5,10,5,10 );
 }
+.grille{
+    -fx-effect: dropshadow( gaussian , #000000 , 3,8,3,8 );
+}
 .btnMenu {
     -fx-background-color: #e4d4a0
      linear-gradient(from 0% 93% to 0% 100%, #e4d4a0 0%, #e4d4a0 100%),

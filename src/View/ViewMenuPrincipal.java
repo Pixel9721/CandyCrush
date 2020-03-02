@@ -19,7 +19,7 @@ public class ViewMenuPrincipal {
     private VBox vBoxButton, vBoxBackground, vBoxLogo;
     private Button btnPlay, btnQuit;
     private ImageView imgbonhomme, imgTitre;
-    final GaussianBlur gaussianBlur = new GaussianBlur(20);
+    final GaussianBlur gaussianBlur = new GaussianBlur(20);// pour l opacite du fond d ecran
 
 
 
@@ -39,7 +39,7 @@ public class ViewMenuPrincipal {
         vBoxBackground.setLayoutY(0);
         vBoxBackground.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBoxBackground.setMinHeight(Screen.getPrimary().getBounds().getHeight());
-        vBoxBackground.setAlignment(Pos.TOP_CENTER);
+        vBoxBackground.setAlignment(Pos.CENTER);
         vBoxBackground.setBackground(new Background( new BackgroundImage(new
                 Image("assets/images/chamallowKawai.jpg"), BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
