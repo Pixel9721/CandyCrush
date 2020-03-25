@@ -1,0 +1,109 @@
+///** bonbons Rayés horizontalements*/
+        //bbVioletRH  = new ImageView("Assets/bonbons/bonbonRayeH/violetH.PNG");
+        //bbRougeRH   = new ImageView("Assets/bonbons/bonbonRayeH/rougeH.PNG");
+        //bbBleuRH    = new ImageView("Assets/bonbons/bonbonRayeH/bleueH.PNG");
+        //bbVertRH    = new ImageView("Assets/bonbons/bonbonRayeH/vertH.PNG");
+        //bbOrangeRH  = new ImageView("Assets/bonbons/bonbonRayeH/orangeH.PNG");
+        //bbJauneRH   = new ImageView("Assets/bonbons/bonbonRayeH/jauneH.PNG");
+//
+        ///** bonbons rayés verticalements*/
+        //bbVioletRV  = new ImageView("Assets/bonbons/bonbonRayeV/violetV.PNG");
+        //bbRougeRV   = new ImageView("Assets/bonbons/bonbonRayeV/rougeV.PNG");
+        //bbVertRV    = new ImageView("Assets/bonbons/bonbonRayeV/vertV.PNG");
+        //bbJauneRV   = new ImageView("Assets/bonbons/bonbonRayeV/jauneV.PNG");
+        //bbOrangeRV  = new ImageView("Assets/bonbons/bonbonRayeV/OrangeV.PNG");
+        bbBleuRV    = new ImageView("Assets/bonbons/bonbonRayeV/bleueV.PNG");
+        StackPane.setMargin(bbBleuRV, new Insets(265,0,0,890));
+//
+        ///** bonbons couleurs*/
+        bbBleu      = new ImageView("Assets/bonbons/bonbon/bleue.png");
+        bbJaune     = new ImageView("Assets/bonbons/bonbon/jaune.png");
+        bbRouge     = new ImageView("Assets/bonbons/bonbon/rouge.png");
+        bbVert      = new ImageView("Assets/bonbons/bonbon/vert.png");
+        bbViolet    = new ImageView("Assets/bonbons/bonbon/violet.png");
+        bbOrange    = new ImageView("Assets/bonbons/bonbon/orange.png");
+        StackPane.setMargin(bbJaune, new Insets(755,0,0,890));
+        ///** bonbons carrés */
+        bbBleuB     = new ImageView("Assets/bonbons/bonbonB/bleueE.png");
+        //bbJauneB    = new ImageView("Assets/bonbons/bonbonB/jauneE.png");
+        //bbRougeB    = new ImageView("Assets/bonbons/bonbonB/rougeE.png");
+        //bbVertB     = new ImageView("Assets/bonbons/bonbonB/vertE.png");
+        //bbVioletB   = new ImageView("Assets/bonbons/bonbonB/violetE.png");
+        //bbOrangeB   = new ImageView("Assets/bonbons/bonbonB/orangeE.png");
+        StackPane.setMargin(bbBleuB, new Insets(755,0,0,55));
+
+        ///** bonbons multis*/
+        bbMulti = new ImageView("Assets/bonbons/bonbonMulti/multi.png");
+        StackPane.setMargin(bbMulti, new Insets(265,0,0,55));
+
+
+
+
+
+
+
+        private class Bonbon extends Parent {
+        private Circle circle = new Circle(SIZE / 2);
+        private  ArrayList<ImageView> listBonbon = new ArrayList<>();
+        public Bonbon(Point2D point){
+
+            circle.setCenterX(SIZE / 2);
+            circle.setCenterY(SIZE / 2);
+            circle.setFill(colors[new Random().nextInt(colors.length)]);
+
+            setTranslateX(point.getX() * SIZE);
+            setTranslateY(point.getY() * SIZE);
+            getChildren().add(circle);
+
+            /*bbBleu = new ImageView(Paths.urlImageBonbonB);
+            bbBleu.setLayoutY(SIZE / 2);
+            bbBleu.setLayoutX(SIZE / 2);
+            bbJaune = new ImageView(Paths.urlImageBonbonJ);
+            bbJaune.setLayoutY(SIZE / 2);
+            bbJaune.setLayoutX(SIZE / 2);
+            bbOrange = new ImageView(Paths.urlImageBonbonO);
+            bbOrange.setLayoutY(SIZE / 2);
+            bbOrange.setLayoutX(SIZE / 2);
+            bbVert = new ImageView(Paths.urlImageBonbonO);
+            bbVert.setLayoutY(SIZE / 2);
+            bbVert.setLayoutX(SIZE / 2);
+            bbViolet = new ImageView(Paths.urlImageBonbonO);
+            bbViolet.setLayoutY(SIZE / 2);
+            bbViolet.setLayoutX(SIZE / 2);
+            bbRouge = new ImageView(Paths.urlImageBonbonO);
+            bbRouge.setLayoutY(SIZE / 2);
+            bbRouge.setLayoutX(SIZE / 2);*/
+
+
+
+            setTranslateX(point.getX() * SIZE);
+            setTranslateY(point.getY() * SIZE);
+            getChildren().addAll(circle);
+
+            setOnMouseClicked(event ->{
+                if (selected == null) {
+                    selected = this;
+                }
+                else {
+                    swap(selected, this);
+                    checkState();
+                    selected = null;
+                }
+            });
+        }
+        public void randomize(){
+            circle.setFill(colors[new Random().nextInt(colors.length)]);
+        }
+        public int getColonne(){
+            return (int)getTranslateX() / SIZE;
+        }
+        public int getLigne(){
+            return (int)getTranslateY() / SIZE;
+        }
+        public void setColor(Paint color){
+            circle.setFill(color);
+        }
+        public Paint getColor(){
+            return circle.getFill();
+        }
+    }
