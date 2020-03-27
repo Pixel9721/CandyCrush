@@ -4,6 +4,7 @@ import Controller.ControllerJeu;
 import Controller.ControllerMenu;
 import Model.ModelJeu;
 import Model.ModelMenu;
+import Musique.Son;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -43,6 +44,7 @@ public class ViewHandler extends Application {
         controllerJeu = new ControllerJeu(this, modelJeu);
 
         //edition de la scene
+        Son.startMusic();
         primaryStage.setTitle("Candy Crush");
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);

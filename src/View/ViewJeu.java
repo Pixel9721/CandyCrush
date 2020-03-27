@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ControllerJeu;
+import Model.ImageB;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
@@ -33,12 +34,11 @@ public class ViewJeu {
     private Group root;
     private Button btnBackMenu;
     private ViewHandler vhJeu;
-    private ImageView fillette;
-    private Label titre;
+    private ImageView fillette, homme;
     private Rectangle rectangle1, rectangle2;
     final GaussianBlur gaussianBlur = new GaussianBlur(15);// pour l opacite du fond d ecran
     //fond
-    private VBox vBoxBackground, vBoxButton, vBoxLogo;
+    private VBox vBoxBackground, vBoxButton, vBoxLogo, vBoxGus;
     //plateau du jeu
     private StackPane plateauCentral;
 
@@ -51,7 +51,7 @@ public class ViewJeu {
     private Color[] colors = new Color[] {
             Color.LIGHTBLUE, Color.PINK, Color.GREENYELLOW, Color.ROSYBROWN, Color.AQUA, Color.BLUEVIOLET
     };
-
+    private ImageB[] bonbon = new ImageB[6];
     //
     private Bonbon selected = null;
     private List<Bonbon> bonbons;
@@ -202,39 +202,41 @@ public class ViewJeu {
         vBoxLogo.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBoxLogo.setAlignment(Pos.BASELINE_CENTER);
 
+        vBoxGus = new VBox();
+        vBoxGus.setLayoutX(0);
+        vBoxGus.setLayoutY(0);
+        vBoxGus.setMinWidth(Screen.getPrimary().getBounds().getWidth());
+        vBoxGus.setMinHeight(Screen.getPrimary().getBounds().getHeight());
+        vBoxGus.setAlignment(Pos.TOP_LEFT);
+
         fillette = new ImageView("Assets/images/fillette1.gif");
         fillette.setFitWidth(250);
         fillette.setFitHeight(250);
         VBox.setMargin(fillette, new Insets(660,0,0,1000));
         fillette.getStyleClass().add("fillette");
 
+        homme = new ImageView("Assets/images/ours1.gif");
+        homme.setFitWidth(280);
+        homme.setFitHeight(280);
+        VBox.setMargin(homme, new Insets(150,0,0,50));
+        homme.getStyleClass().add("fillette");
+
         //stackPane du plateau
         plateauCentral = new StackPane();
         plateauCentral.setAlignment(Pos.TOP_CENTER);
 
+        //jeu
         rectangle1 = new Rectangle();
         rectangle1.setWidth(520);
         rectangle1.setHeight(540);
         rectangle1.setFill(Color.GREY);
         StackPane.setMargin(rectangle1, new Insets(220,0,0,460));
+        rectangle1.setStroke(Color.WHITE);
+        rectangle1.setStrokeWidth(2);
         rectangle1.setArcWidth(20);
         rectangle1.setArcHeight(20);
         rectangle1.setOpacity(0.5);
         rectangle1.getStyleClass().add("grille");
-
-        rectangle2 = new Rectangle();
-        rectangle2.setWidth(520);
-        rectangle2.setHeight(540);
-        rectangle2.setFill(Color.GREY);
-        StackPane.setMargin(rectangle2, new Insets(220,0,0,460));
-        rectangle2.setOpacity(0.5);
-        rectangle2.setStroke(Color.WHITE);
-        rectangle2.setFill(null);
-        rectangle2.setStrokeWidth(2);
-        rectangle2.setArcWidth(20);
-        rectangle2.setArcHeight(20);
-
-
 
         bonbons = IntStream.range(0, W * H)
                 .mapToObj(i -> new Point2D(i % W, i /H))
@@ -242,16 +244,16 @@ public class ViewJeu {
                 .collect(Collectors.toList());
 
         vBoxBackground.getChildren().addAll();
-        vBoxLogo.getChildren().add(fillette);
+        vBoxLogo.getChildren().addAll(fillette);
+        vBoxGus.getChildren().addAll(homme);
         vBoxButton.getChildren().addAll(btnBackMenu);
-        plateauCentral.getChildren().addAll(rectangle1,rectangle2,createContent());
-
+        plateauCentral.getChildren().addAll(rectangle1,createContent());
     }
-
     void initView(){
         root.getChildren().clear();
         root.getChildren().addAll(vBoxBackground);
         root.getChildren().addAll(vBoxLogo);
+        root.getChildren().addAll(vBoxGus);
         root.getChildren().addAll(vBoxButton);
         root.getChildren().addAll(plateauCentral);
 
