@@ -10,7 +10,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -50,8 +49,8 @@ public class ViewOption {
         vBoxTitre.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBoxTitre.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBoxTitre.setAlignment(Pos.TOP_CENTER);
-        titreOption = iniTitre("OPTION", 30 );
-
+        titreOption = iniTitre("OPTION", 20 );
+        VBox.setMargin(titreOption, new Insets(150,0,0,0));
 
         //vBox pour le bouton retour
         vBoxButton = new VBox();
@@ -63,6 +62,7 @@ public class ViewOption {
         btnBackMain2 = initButton("Retour");
         VBox.setMargin(btnBackMain2, new Insets(20, 20,20,20));
 
+        //titre du bouton
         btnControlSon = initButtonV("Volume", 20);
         btnControlSon.setLayoutX(650);
         btnControlSon.setLayoutY(400);

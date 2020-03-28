@@ -35,7 +35,7 @@ public class ViewJeu {
     private Button btnBackMenu;
     private ViewHandler vhJeu;
     private ImageView fillette, homme;
-    private Rectangle rectangle1, rectangle2;
+    private Rectangle rectangle1;
     final GaussianBlur gaussianBlur = new GaussianBlur(15);// pour l opacite du fond d ecran
     //fond
     private VBox vBoxBackground, vBoxButton, vBoxLogo, vBoxGus;
@@ -103,14 +103,12 @@ public class ViewJeu {
             lignrDeBonbon.forEach(Bonbon::aleat);
         }
     }
-
     //interchange le bonbon a par rapport au bonbon b quand on veux le deplacer
     private void interchange(Bonbon a, Bonbon b){
         Paint color = a.getColor();
         a.setColor(b.getColor());
         b.setColor(color);
     }
-
     //création de la class bonbon
     private class Bonbon extends Parent {
         //creations des bonbons en forme de cercle et la  taille des cercle divise par la taille du tableau
@@ -157,11 +155,9 @@ public class ViewJeu {
         public int getLigne() {
             return (int) getTranslateY() / SIZE;
         }
-
         public void setColor(Paint color) {
             bonBon.setFill(color);
         }
-
         public Paint getColor() {
             return bonBon.getFill();
         }
@@ -183,7 +179,6 @@ public class ViewJeu {
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         vBoxBackground.setEffect(gaussianBlur);
 
-
         /*vbox bouton*/
         vBoxButton = new VBox();
         vBoxButton.setLayoutX(0);
@@ -194,26 +189,26 @@ public class ViewJeu {
         btnBackMenu = initButton("Retour", 20);
         VBox.setMargin(btnBackMenu, new Insets(20, 20,20,20));
 
+        //vbox du logo
         vBoxLogo = new VBox();
         vBoxLogo.setLayoutX(0);
         vBoxLogo.setLayoutY(0);
         vBoxLogo.setMinWidth(Screen.getPrimary().getBounds().getWidth());
         vBoxLogo.setMinHeight(Screen.getPrimary().getBounds().getHeight());
         vBoxLogo.setAlignment(Pos.BASELINE_CENTER);
-
-        vBoxGus = new VBox();
-        vBoxGus.setLayoutX(0);
-        vBoxGus.setLayoutY(0);
-        vBoxGus.setMinWidth(Screen.getPrimary().getBounds().getWidth());
-        vBoxGus.setMinHeight(Screen.getPrimary().getBounds().getHeight());
-        vBoxGus.setAlignment(Pos.TOP_LEFT);
-
         fillette = new ImageView("Assets/images/fillette1.gif");
         fillette.setFitWidth(250);
         fillette.setFitHeight(250);
         VBox.setMargin(fillette, new Insets(660,0,0,1000));
         fillette.getStyleClass().add("fillette");
 
+        //vbox de l'ours
+        vBoxGus = new VBox();
+        vBoxGus.setLayoutX(0);
+        vBoxGus.setLayoutY(0);
+        vBoxGus.setMinWidth(Screen.getPrimary().getBounds().getWidth());
+        vBoxGus.setMinHeight(Screen.getPrimary().getBounds().getHeight());
+        vBoxGus.setAlignment(Pos.TOP_LEFT);
         homme = new ImageView("Assets/images/ours1.gif");
         homme.setFitWidth(280);
         homme.setFitHeight(280);
@@ -260,20 +255,10 @@ public class ViewJeu {
         return b;
     }
 
-    private Label initLabel(String texteLabel, int size){
-        Label l = new Label();
-        l.setTextFill(Color.WHITE);
-        l.setFont(Font.font(size));
-        l.setText(texteLabel);
-        l.getStyleClass().add("labelMenu");
-        return l;
-    }
-
     public void setEventsBack(ControllerJeu cm){
         btnBackMenu.setOnMouseClicked((cm));
     }
 
     public Button getBtnBckMenu() { return btnBackMenu; }
-    public void getBtnBckMenu(ControllerJeu cJ){ btnBackMenu.setOnMouseClicked(cJ); }
 
 }
