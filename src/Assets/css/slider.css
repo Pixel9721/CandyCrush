@@ -1,0 +1,8 @@
+.slider .thumb {
+    -fx-background-image: url("../Images/chamallow1.png");
+    -fx-background-color: transparent;
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size:90%, auto;
+    -fx-padding: 32;
+}

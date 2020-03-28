@@ -51,7 +51,6 @@ public class ViewJeu {
     private Color[] colors = new Color[] {
             Color.LIGHTBLUE, Color.PINK, Color.GREENYELLOW, Color.ROSYBROWN, Color.AQUA, Color.BLUEVIOLET
     };
-    private ImageB[] bonbon = new ImageB[6];
     //
     private Bonbon selected = null;
     private List<Bonbon> bonbons;
@@ -238,11 +237,6 @@ public class ViewJeu {
         rectangle1.setOpacity(0.5);
         rectangle1.getStyleClass().add("grille");
 
-        bonbons = IntStream.range(0, W * H)
-                .mapToObj(i -> new Point2D(i % W, i /H))
-                .map(point -> new Bonbon(point))
-                .collect(Collectors.toList());
-
         vBoxBackground.getChildren().addAll();
         vBoxLogo.getChildren().addAll(fillette);
         vBoxGus.getChildren().addAll(homme);
@@ -256,7 +250,6 @@ public class ViewJeu {
         root.getChildren().addAll(vBoxGus);
         root.getChildren().addAll(vBoxButton);
         root.getChildren().addAll(plateauCentral);
-
     }
 
     public Button initButton(String texteBoutton, int size){
@@ -275,8 +268,6 @@ public class ViewJeu {
         l.getStyleClass().add("labelMenu");
         return l;
     }
-
-
 
     public void setEventsBack(ControllerJeu cm){
         btnBackMenu.setOnMouseClicked((cm));

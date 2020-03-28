@@ -17,11 +17,10 @@ public class ViewMenuPrincipal {
     private ViewHandler vMenu;
     private Group root;
     private VBox vBoxButton, vBoxBackground, vBoxLogo;
-    private Button btnPlay, btnQuit;
+    private Button btnPlay, btnQuit, btnOption;
     private ImageView imgbonhomme, imgTitre;
     final GaussianBlur gaussianBlur = new GaussianBlur(20);// pour l opacite du fond d ecran
-
-
+    final GaussianBlur gaussianBlure = new GaussianBlur(15);// pour l opacite du fond d ecran
 
     public ViewMenuPrincipal(ViewHandler vMemu, Group root) {
         this.vMenu = vMemu;
@@ -55,21 +54,23 @@ public class ViewMenuPrincipal {
         btnPlay = initButton("PLAY");
         VBox.setMargin(btnPlay, new Insets(0,0,10,0));
         btnQuit = initButton("QUITTER");
-        VBox.setMargin(btnQuit, new Insets(30,0,0,0));
+        VBox.setMargin(btnQuit, new Insets(60,0,0,0));
+        btnOption = initButton("Option");
+        VBox.setMargin(btnOption, new Insets(30,0,0,0));
 
         imgTitre = new ImageView("Assets/images/CandyCrush1.png");
         VBox.setMargin(imgTitre, new Insets(50,0,0,0));
         imgTitre.getStyleClass().add("banniere");
+        imgTitre.setEffect(gaussianBlure);
 
 
         imgbonhomme = new ImageView("Assets/images/fillette.gif");
         imgbonhomme.setFitWidth(250);
         imgbonhomme.setFitHeight(250);
-        VBox.setMargin(imgbonhomme, new Insets(350,0,0,100));
+        VBox.setMargin(imgbonhomme, new Insets(350,0,0,250));
         imgbonhomme.getStyleClass().add("fillette");
 
-
-        vBoxButton.getChildren().addAll(btnPlay,btnQuit);
+        vBoxButton.getChildren().addAll(btnPlay, btnOption,btnQuit);
         vBoxBackground.getChildren().addAll();
         vBoxLogo.getChildren().addAll(imgTitre, imgbonhomme);
         initView();
@@ -92,10 +93,14 @@ public class ViewMenuPrincipal {
     public void setEvents(ControllerMenu cm){
         btnPlay.setOnMouseClicked(cm);
         btnQuit.setOnMouseClicked(cm);
+        btnOption.setOnMouseClicked(cm);
     }
 
 
     //getter
     public Button getBtnPlay() { return btnPlay; }
     public Button getBtnQuit() { return btnQuit; }
+    public Button getBtnOption() { return btnOption; }
+
+    public Group getRoot() { return root; }
 }

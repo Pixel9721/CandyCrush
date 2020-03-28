@@ -2,9 +2,10 @@ package View;
 
 import Controller.ControllerJeu;
 import Controller.ControllerMenu;
+import Controller.ControllerOption;
 import Model.ModelJeu;
 import Model.ModelMenu;
-import Musique.Son;
+import Tools.Music;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,12 +19,15 @@ public class ViewHandler extends Application {
 
     private ViewMenuPrincipal vMenu;
     private ViewJeu vJeu;
+    private ViewOption vOption;
 
     private ModelMenu modelMenu;
     private ModelJeu modelJeu;
+    private ModelJeu modelOption;
 
     private ControllerMenu controllerMenu;
     private ControllerJeu controllerJeu;
+    private ControllerOption controllerOption;
 
 
 
@@ -36,32 +40,34 @@ public class ViewHandler extends Application {
 
         modelMenu = new ModelMenu();
         modelJeu = new ModelJeu();
+        modelOption = new ModelJeu();
 
         vMenu = new ViewMenuPrincipal(this, root);
         vJeu = new ViewJeu(this, root);
+        vOption = new ViewOption(this, root);
 
         controllerMenu = new ControllerMenu(this, modelMenu);
         controllerJeu = new ControllerJeu(this, modelJeu);
+        controllerOption = new ControllerOption(this, modelOption);
 
         //edition de la scene
-        Son.startMusic();
+        Music.startMusic();
         primaryStage.setTitle("Candy Crush");
         primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
     }
-
 
     public void setEventHandlerMenu(ControllerMenu cm) { vMenu.setEvents(cm); }
     public void setEventHandlerJeu(ControllerJeu cm) { vJeu.setEventsBack(cm);}
+    public void setEventOptionView(ControllerOption cm){ vOption.setEventsBack(cm);}
 
     public ViewMenuPrincipal getvMenu() { return vMenu; }
     public ViewJeu getvJeu() { return vJeu; }
 
-
-
-    public void setJeuView() { vJeu.initView(); }
+    public void setJeuView(){ vJeu.initView(); }
     public void setMenuView(){ vMenu.initView();}
+    public void setOptionView(){ vOption.initView(); }
+
+    public ViewOption getvOption() { return vOption; }
 }

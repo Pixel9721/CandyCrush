@@ -2,6 +2,7 @@
     -fx-opacity: 0.75;
     -fx-max-width: 50;
     -fx-effect: dropshadow( gaussian , #000000 , 3,10,3,10 );
+
 }
 .fillette {
     -fx-effect: dropshadow( gaussian , #000000 , 5,10,5,10 );
@@ -41,4 +42,11 @@
 .btnMenu Text {
      -fx-fill: #0676aB;
      -fx-effect: dropshadow( gaussian , #0676aB , 0,0,0,2 );
+}
+.titre{
+    -fx-fill: #0676aB;
+    -fx-effect: dropshadow( gaussian , #0676aB , 0,0,0,5 );
+}
+.btnV {
+    -fx-fill: #0676aB;
 }

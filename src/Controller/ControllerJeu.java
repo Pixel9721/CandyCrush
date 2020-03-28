@@ -16,6 +16,9 @@ public class ControllerJeu implements EventHandler<MouseEvent> {
         this.launcher = viewHandler;
         this.launcher.setEventHandlerJeu(this);
 
+
+
+
     }
 
 
